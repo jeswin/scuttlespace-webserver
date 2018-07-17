@@ -6,6 +6,23 @@ import * as site from "./site";
 const app = new Koa();
 app.use(bodyParser());
 
+/*
+  Supported urls
+  --------------
+  /
+  /posts
+  /projects
+  /events
+  /resume
+  /todos
+  /lessons
+
+  Url rewrites
+  ------------
+  Before getting called, custom domain paths are rewritten with the rewrite middleware.
+  So https://jeswin.org/posts/hello -> https://scuttle.space/jeswin/posts/hello
+*/
+
 [
   router.get("/", site.home)
   // router.get("/:username", user.home),
