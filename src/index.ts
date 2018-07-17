@@ -1,7 +1,8 @@
 import Koa = require("koa");
 import bodyParser = require("koa-bodyparser");
 import router = require("koa-route");
-import * as site from "./site";
+import * as scuttlespace from "./scuttlespace";
+import * as user from "./user";
 
 const app = new Koa();
 app.use(bodyParser());
@@ -24,8 +25,8 @@ app.use(bodyParser());
 */
 
 [
-  router.get("/", site.home)
-  // router.get("/:username", user.home),
+  router.get("/", scuttlespace.home),
+  router.get("/:username", user.home),
   // router.get("/:username/posts", pub.home),
   // router.get("/:username/posts/category/:category", pub.category),
   // router.get("/:username/posts/:post", pub.item),
@@ -36,4 +37,5 @@ app.use(bodyParser());
 ].forEach(r => app.use(r));
 
 app.listen(3000);
+
 console.log("Listening on 3000");
