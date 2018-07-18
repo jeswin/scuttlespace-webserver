@@ -2,10 +2,8 @@ import Koa = require("koa");
 import bodyParser = require("koa-bodyparser");
 import router = require("koa-route");
 import * as scuttlespace from "./scuttlespace";
+import { IUser } from "./types";
 import * as user from "./user";
-
-const app = new Koa();
-app.use(bodyParser());
 
 /*
   Supported urls
@@ -24,9 +22,20 @@ app.use(bodyParser());
   So https://jeswin.org/posts/hello -> https://scuttle.space/jeswin/posts/hello
 */
 
+const app = new Koa();
+app.use(bodyParser());
+
+/* tslint:disable */
+declare module "koa" {
+  interface Context {
+    user: IUser;
+  }
+}
+/* tslint:enable */
+
 [
   router.get("/", scuttlespace.home),
-  router.get("/:username", user.home),
+  router.get("/:username", user.home)
   // router.get("/:username/posts", pub.home),
   // router.get("/:username/posts/category/:category", pub.category),
   // router.get("/:username/posts/:post", pub.item),
