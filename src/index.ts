@@ -1,9 +1,11 @@
 import Koa = require("koa");
 import bodyParser = require("koa-bodyparser");
 import router = require("koa-route");
+import urlMappingMiddleware from "scuttlespace-middleware-urlmapping";
 import * as scuttlespace from "./scuttlespace";
 import { IUser } from "./types";
 import * as user from "./user";
+import { domain } from "./config";
 
 /*
   Supported urls
@@ -24,6 +26,7 @@ import * as user from "./user";
 
 const app = new Koa();
 app.use(bodyParser());
+app.use(urlMappingMiddleware(domain));
 
 /* tslint:disable */
 declare module "koa" {
