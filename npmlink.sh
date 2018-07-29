@@ -1,0 +1,1 @@
+npm link ../scuttlespace-middleware-urlmapper
