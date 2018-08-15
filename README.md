@@ -1,2 +1,2 @@
 # scuttlespace-webserver
-ScuttleSpace's own web server built on Koa
+Scuttlespace's own web server built on Koa
